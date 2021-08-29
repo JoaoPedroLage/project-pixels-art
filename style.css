@@ -10,14 +10,24 @@ body {
   display: flex;
   flex-direction: column;
   align-content: center;
+  background-image: url("background-image.png");
 }
 
 header {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 input {
   width: 50px;
+}
+
+.color {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.container {
+  color:  rgb(131, 131, 221);
 }
 
 #color-palette {
@@ -26,25 +36,7 @@ input {
 }
 
 #color1 {
-  background-color: black;
-  cursor: pointer;
-}
-
-#color2 {
-  background-color: red;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-#color3 {
-  background-color: blue;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-#color4 {
-  background-color: green;
-  margin-left: 10px;
+  background-color: rgb(red, green, blue);
   cursor: pointer;
 }
 
@@ -54,6 +46,15 @@ input {
 
 #number-column {
   margin: 10px;
+  border: 0;
+}
+
+.container {
+  padding: 0;
+}
+
+.container h1{
+  margin-top: 20px;
 }
 
 .color {
