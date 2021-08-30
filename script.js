@@ -5,6 +5,10 @@ window.onload = function pixelArt() {
   const pixelBoard = document.getElementById('pixel-board');
   let tableSize = 5;
 
+  function reloadPage() {
+    document.location.reload(true);
+  }
+
   function table() {
     for (let j = 0; j < tableSize; j += 1) {
       const linesClass = document.createElement('div');
@@ -97,30 +101,26 @@ window.onload = function pixelArt() {
     }
     changePaletteColor();
 
-    function PintNewPaletteColor(eventSelected) {
-      const event = eventSelected;
+    function PintNewPaletteColor(event) {
+      const click = event;
 
       for (let i = 0; i < colorPalette.length; i += 1) {
         if (colorPalette[i].classList.contains('selected')) {
-          event.target.style.backgroundColor = newColors[i];
+          click.target.style.backgroundColor = newColors[i];
         }
       }
     }
 
-    function reloadPage() {
-      document.location.reload(true);
-    }
-
     function paintSelectedColor(event) {
-      const eventSelected = event;
+      const click = event;
 
       if (localStorage.count === '1') {
         for (let i = 0; i < colorPalette.length; i += 1) {
           if (colorPalette[i].classList.contains('selected')) {
-            eventSelected.target.style.backgroundColor = color[i];
+            click.target.style.backgroundColor = color[i];
           }
         }
-      } else PintNewPaletteColor(eventSelected);
+      } else PintNewPaletteColor(click);
     }
 
     for (let i = 0; i < pixel.length; i += 1) {
@@ -147,12 +147,29 @@ window.onload = function pixelArt() {
       }
     }
 
+    function createEraseOne() {
+      const paletteColor = document.getElementById('color-palette');
+      const whitePixel = document.createElement('div');
+
+      for (let i = 0; i < colorPalette.length; i += 1) {
+        if (paletteColor.children[i].classList.contains('eraseColor')) {
+          paletteColor.removeChild(paletteColor.children[i]);
+        } else {
+          whitePixel.classList.add('color');
+          whitePixel.classList.add('eraseColor');
+          paletteColor.appendChild(whitePixel);
+        }
+      }
+    }
+
     const confirmLine = document.querySelector('#generate-board');
     const eraseBoard = document.querySelector('#clear-board');
+    const erasePixel = document.querySelector('#clear-pixel');
     const reloadButton = document.querySelector('#reload-page');
+
     confirmLine.addEventListener('click', tableNumberSize);
-    confirmLine.addEventListener('click', paint);
     eraseBoard.addEventListener('click', erase);
+    erasePixel.addEventListener('click', createEraseOne);
     reloadButton.addEventListener('click', reloadPage);
   }
   paint();
